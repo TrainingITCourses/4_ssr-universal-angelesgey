@@ -1,0 +1,28 @@
+<div>
+  <h4>Filtros de busqueda</h4>
+  <mat-form-field>
+    <mat-select placeholder="Estado" [(ngModel)]="selectedValueStatus" name="status" (selectionChange)="changeStatus($event.value)">
+      <mat-option *ngFor="let status of statuses" [value]="status.id">
+        {{status.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field> 
+
+  <mat-form-field>
+    <mat-select placeholder="Tipo de misión" [(ngModel)]="selectedValueMission" name="mission" (selectionChange)="changeMission($event.value)">
+      <mat-option *ngFor="let mission of missions" [value]="mission.id">
+        {{mission.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Agencias" [(ngModel)]="selectedValueAgency" name="agency" (selectionChange)="changeAgency($event.value)">
+      <mat-option *ngFor="let agency of agencies" [value]="agency.id">
+        {{agency.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p> Filtros seleccionados: {{selectedValueStatus}} - {{selectedValueMission}} - {{selectedValueAgency}} </p> 
+  <button mat-button (click)="searchClicked($event)">Buscar</button>
+</div>

@@ -1,0 +1,17 @@
+
+<mat-divider></mat-divider>
+<div>
+  <h4>Resultado:</h4>
+  <mat-list>
+    <a mat-list-item *ngFor="let launch of launches" >
+      <mat-icon matListIcon>launch</mat-icon>
+      <h3 matLine>
+        {{ launch.name }} - Status: {{ launch.status }} - Missions: {{ launch.missions[0].id }}
+      </h3>
+      <div matLine>        
+        <i> At {{ launch.location.name }} On {{ launch.net }}</i>
+      </div>
+      <mat-divider></mat-divider>
+    </a>
+  </mat-list>
+</div>
