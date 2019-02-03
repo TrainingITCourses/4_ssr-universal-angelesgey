@@ -1,28 +1,37 @@
-<div>
-  <h4>Filtros de busqueda</h4>
-  <mat-form-field>
-    <mat-select placeholder="Estado" [(ngModel)]="selectedValueStatus" name="status" (selectionChange)="changeStatus($event.value)">
-      <mat-option *ngFor="let status of statuses" [value]="status.id">
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>Search filter:</mat-card-title>
+    </mat-card-header>
+  
+  <mat-card-content>
+  <mat-form-field appearance="standard">
+    <mat-label>Status</mat-label>
+    <mat-select placeholder="Status" [(ngModel)]="selectedValueStatus" name="status" (selectionChange)="searchCriteria()">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let status of statuses" [value]="status">
         {{status.name}}
       </mat-option>
     </mat-select>
   </mat-form-field> 
 
-  <mat-form-field>
-    <mat-select placeholder="Tipo de misión" [(ngModel)]="selectedValueMission" name="mission" (selectionChange)="changeMission($event.value)">
-      <mat-option *ngFor="let mission of missions" [value]="mission.id">
+  <mat-form-field appearance="standard">
+    <mat-label>Mission</mat-label>
+    <mat-select placeholder="Mission" [(ngModel)]="selectedValueMission" name="mission" (selectionChange)="searchCriteria()">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let mission of missions" [value]="mission">
         {{mission.name}}
       </mat-option>
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field>
-    <mat-select placeholder="Agencias" [(ngModel)]="selectedValueAgency" name="agency" (selectionChange)="changeAgency($event.value)">
-      <mat-option *ngFor="let agency of agencies" [value]="agency.id">
+  <mat-form-field appearance="standard">
+    <mat-label>Agencies</mat-label>
+    <mat-select placeholder="Agencies" [(ngModel)]="selectedValueAgency" name="agency" (selectionChange)="searchCriteria()">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let agency of agencies" [value]="agency">
         {{agency.name}}
       </mat-option>
     </mat-select>
   </mat-form-field>
-  <p> Filtros seleccionados: {{selectedValueStatus}} - {{selectedValueMission}} - {{selectedValueAgency}} </p> 
-  <button mat-button (click)="searchClicked($event)">Buscar</button>
-</div>
+</mat-card-content>
+</mat-card>

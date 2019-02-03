@@ -1,4 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Status } from '../store/models/status';
+import { Agency } from '../store/models/agency';
+import { Mission } from '../store/models/mission';
 
 @Component({
   selector: 'app-search-filter',
@@ -11,34 +14,22 @@ export class SearchFilterComponent implements OnInit {
   @Input() public missions: any[];
   @Input() public agencies: any[];
 
-  public selectedStatus;
-  public selectedAgency;
-  public selectedMission;
+  @Output() public search = new EventEmitter();
+
+  selectedValueStatus: Status;
+  selectedValueMission: Mission;
+  selectedValueAgency: Agency;
 
   constructor() { }
-  @Output() public search = new EventEmitter();
+  
   ngOnInit() {
   }
 
-  public searchClicked = () => {
-    console.log("Search by status: " + this.selectedStatus + " - Agency: " + this.selectedAgency + " - Mission " + this.selectedMission);
-    // this.search.next(this.selectedStatus, this.selectedMission, this.selectedAgency);
-    this.search.emit({status: this.selectedStatus, mission: this.selectedMission, agency: this.selectedAgency});
-  };
-
-  public changeStatus(status) {
-    console.log("Status selected " + status);
-    this.selectedStatus = status;
-  }
-
-  public changeMission(mission) {
-    console.log("Mission selected " + mission);
-    this.selectedMission = mission;
-  }
-
-  public changeAgency(agency) {
-    console.log("Agency selected " + agency);
-    this.selectedAgency = agency;
+  public searchCriteria() {
+    this.search.emit({statusFilter: this.selectedValueStatus, 
+                      agencyFilter: this.selectedValueAgency, 
+                      missionFilter: this.selectedValueMission});
+    
   }
 
 }

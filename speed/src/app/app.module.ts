@@ -15,7 +15,8 @@ import {
   MatProgressSpinnerModule,
   MatSidenavModule,
   MatToolbarModule,
-  MatSelectModule
+  MatSelectModule,
+  MatCardModule
 } from '@angular/material';
 import { SearchFilterComponent } from './search-filter/search-filter.component';
 
@@ -37,7 +38,8 @@ import { SearchFilterComponent } from './search-filter/search-filter.component';
     MatProgressSpinnerModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

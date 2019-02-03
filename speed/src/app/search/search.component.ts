@@ -25,16 +25,46 @@ export class SearchComponent implements OnInit {
   }
 
   onSearch = (p) => {
-    console.log("Selected Status:" + p.status + " - Mission: " + p.mission + " - Agency: " + p.agency);
-    //this.launchesResult = this.launches;
-    this.launchesResult = this.launches.filter(
-          launch => 
-                    //launch.missions["id"] === p.mission
-                    // &&
-                    launch.status === p.status 
-                    //&& 
-                    //launch.lsp.id === p.agency
-                    );
+    console.log("Selected Status:" + p.statusFilter + " - Mission: " + p.missionFilter + " - Agency: " + p.agencyFilter);
+    
+    this.launchesResult = this.launches;
+
+    if(p.statusFilter != undefined) {
+      this.launchesResult = this.searchByStatus(p.statusFilter, this.launchesResult);
+    }
+    if(p.missionFilter != undefined) {
+      this.launchesResult = this.searchByMission(p.missionFilter, this.launchesResult);
+    }
+
+    if(p.agencyFilter != undefined) {
+      this.launchesResult = this.searchByAgency(p.agencyFilter, this.launchesResult);
+    }
+
+  };
+
+  searchByStatus = (statusFilter, array) => {
+    return array.filter(
+          launch => launch.status === statusFilter.id );
+  };
+
+  searchByMission = (missionFilter, array) => {
+    return array.filter(
+        launch => {
+          return launch.missions.some(mission => (mission.id === missionFilter.id))
+        }        
+    )
+  };
+
+  searchByAgency = (agencyFilter, array) => {
+    return array.filter(
+        launch => {
+          return launch.missions.some(
+            mission => (mission.agencies != undefined) && (mission.agencies.some(
+              agency => agency.id === agencyFilter.id
+            ))
+          )
+        }
+    )
   };
   
 }
