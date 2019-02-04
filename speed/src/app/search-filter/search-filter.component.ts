@@ -1,18 +1,19 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
 import { Status } from '../store/models/status';
 import { Agency } from '../store/models/agency';
 import { Mission } from '../store/models/mission';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-search-filter',
   templateUrl: './search-filter.component.html',
   styleUrls: ['./search-filter.component.css']
 })
 export class SearchFilterComponent implements OnInit {
 
-  @Input() public statuses: any[];
-  @Input() public missions: any[];
-  @Input() public agencies: any[];
+  @Input() public statuses: Status[];
+  @Input() public missions: Mission[];
+  @Input() public agencies: Agency[];
 
   @Output() public search = new EventEmitter();
 

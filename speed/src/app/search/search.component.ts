@@ -12,16 +12,21 @@ import { Status } from '../store/models/status';
 })
 export class SearchComponent implements OnInit {
    
-  public launches: Launch[] = this.data.launches;
-  public agencies: Agency[] = this.data.agencies;
-  public missionTypes: Mission[] = this.data.missionTypes;
-  public launchStatus: Status[] = this.data.launchStatus;
-  public launchesResult: Launch[] = this.launches;
+  public launches: Launch[];
+  public agencies: Agency[];
+  public missionTypes: Mission[];
+  public launchStatus: Status[];
+  public launchesResult: Launch[];
 
-  constructor(private data: DataService) { 
+  constructor(private dataService: DataService) { 
    }
 
   ngOnInit() { 
+    this.launches = this.dataService.launches;
+    this.agencies = this.dataService.agencies;
+    this.missionTypes = this.dataService.missionTypes;
+    this.launchStatus = this.dataService.launchStatus;
+    this.launchesResult = this.launches;
   }
 
   onSearch = (p) => {
