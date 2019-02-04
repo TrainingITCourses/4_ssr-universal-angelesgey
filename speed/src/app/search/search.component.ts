@@ -25,7 +25,9 @@ export class SearchComponent implements OnInit {
   }
 
   onSearch = (p) => {
-    console.log("Selected Status:" + p.statusFilter + " - Mission: " + p.missionFilter + " - Agency: " + p.agencyFilter);
+    console.log("Search by Status:" + (p.statusFilter? p.statusFilter.name : "none") + 
+      " - Mission: " + (p.missionFilter ? p.missionFilter.name : "none") + 
+      " - Agency: " + (p.agencyFilter ? p.agencyFilter.name : "none"));
     
     this.launchesResult = this.launches;
 

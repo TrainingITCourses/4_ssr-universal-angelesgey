@@ -26,6 +26,11 @@ export class SearchFilterComponent implements OnInit {
   }
 
   public searchCriteria() {
+    
+    console.log("Selected Status:" + (this.selectedValueStatus? this.selectedValueStatus.name : "none") + 
+      " - Mission: " + (this.selectedValueMission ? this.selectedValueMission.name : "none") + 
+      " - Agency: " + (this.selectedValueAgency ? this.selectedValueAgency.name : "none"));
+
     this.search.emit({statusFilter: this.selectedValueStatus, 
                       agencyFilter: this.selectedValueAgency, 
                       missionFilter: this.selectedValueMission});
