@@ -10,6 +10,10 @@
     "ng": "ng",
     "start": "ng serve -o --port 4219",
     "build": "ng build --prod",
+    "build:ssr": "npm run build:client-and-server-bundles && npm run webpack:server",
+    "build:client-and-server-bundles": "ng build --prod && ng run speed:server",
+    "webpack:server": "webpack --config webpack.server.config.js --progress --colors",
+    "serve:ssr": "node dist/server",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -17,26 +21,30 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~7.2.2",
+    "@angular/cdk": "7.2.2",
     "@angular/common": "~7.2.2",
     "@angular/compiler": "~7.2.2",
     "@angular/core": "~7.2.2",
     "@angular/forms": "~7.2.2",
     "@angular/http": "~7.2.2",
+    "@angular/material": "^7.2.2",
     "@angular/platform-browser": "~7.2.2",
     "@angular/platform-browser-dynamic": "~7.2.2",
+    "@angular/platform-server": "^7.2.7",
     "@angular/router": "~7.2.2",
-    "@angular/material": "^7.2.2",
-    "@angular/cdk": "7.2.2",
     "@ng-select/ng-select": "^0.11.0",
+    "@nguniversal/express-engine": "^7.1.0",
+    "@nguniversal/module-map-ngfactory-loader": "^7.1.0",
     "core-js": "^2.5.4",
     "rxjs": "~6.3.3",
+    "ts-loader": "^5.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.29"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.12.3",
     "@angular/cli": "~7.2.3",
-    "@angular/compiler-cli": "~7.2.2",
+    "@angular/compiler-cli": "^7.2.7",
     "@angular/language-service": "~7.2.2",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
@@ -52,6 +60,7 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "~3.2.4"
+    "typescript": "~3.2.4",
+    "webpack-cli": "^3.2.3"
   }
 }
